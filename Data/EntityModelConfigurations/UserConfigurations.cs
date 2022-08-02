@@ -15,6 +15,8 @@ namespace AttendanceApi.Data.EntityModelConfigurations
 
       //generate identity(1,1)
       builder.Property(u => u.Id)
+        .HasColumnOrder(1)
+        .UseIdentityColumn(1, 1)
         .ValueGeneratedOnAdd();
 
       builder.Property(u => u.Username)
@@ -44,7 +46,6 @@ namespace AttendanceApi.Data.EntityModelConfigurations
       builder.Property(u => u.Role)
         .HasConversion<string>()
         .HasColumnType("varchar")
-        .HasColumnOrder(6)
         .HasMaxLength(100)
         .IsRequired(true);
     }
