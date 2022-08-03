@@ -1,5 +1,4 @@
 using AttendanceApi.Data;
-using AttendanceApi.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace AttendanceApi
@@ -20,7 +19,7 @@ namespace AttendanceApi
       builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
       //Configure my services
-      builder.Services.AddTransient<UserService>();
+      // builder.Services.AddTransient<UserService>();
 
       // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
       builder.Services.AddEndpointsApiExplorer();
