@@ -8,11 +8,43 @@ namespace AttendanceApi.Data.EntityModelConfigurations
   {
     public void Configure(EntityTypeBuilder<Student> builder)
     {
-      builder.HasIndex(s => s.Regno)
-        .IsUnique(true);
+      //add constrain for unique values
+      builder.HasAlternateKey(s => s.Id);
+
+      //generate identity(1,1)
+      builder.Property(s => s.Id)
+        .UseIdentityColumn(1, 1)
+        .ValueGeneratedOnAdd();
+
+      //Primay key
+      builder.HasKey(s => s.Regno);
 
       //Regno configuration
       builder.Property(s => s.Regno)
+        .HasColumnType("varchar")
+        .HasMaxLength(200)
+        .IsRequired(true);
+
+      //unique username
+      builder.HasIndex(s => s.Username)
+        .IsUnique(true);
+
+      builder.Property(s => s.Username)
+        .HasColumnType("varchar")
+        .HasMaxLength(200)
+        .IsRequired(true);
+
+      builder.Property(s => s.Password)
+        .HasColumnType("varchar")
+        .HasMaxLength(255)
+        .IsRequired(true);
+
+      builder.Property(s => s.FirstName)
+        .HasColumnType("varchar")
+        .HasMaxLength(200)
+        .IsRequired(true);
+
+      builder.Property(s => s.LastName)
         .HasColumnType("varchar")
         .HasMaxLength(200)
         .IsRequired(true);

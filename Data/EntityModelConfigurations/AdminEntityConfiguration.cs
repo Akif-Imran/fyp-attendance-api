@@ -4,40 +4,46 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AttendanceApi.Data.EntityModelConfigurations
 {
-  public class ParentEntityConfiguration : IEntityTypeConfiguration<Parent>
+  public class AdminEntityConfiguration : IEntityTypeConfiguration<Admin>
   {
-    public void Configure(EntityTypeBuilder<Parent> builder)
+    public void Configure(EntityTypeBuilder<Admin> builder)
     {
-      builder.HasKey(p => p.Id);
-      //add constrain for unique values
-      builder.HasIndex(p => p.Username)
-        .IsUnique(true);
+      builder.HasKey(t => t.Id);
 
       //generate identity(1,1)
-      builder.Property(p => p.Id)
+      builder.Property(t => t.Id)
+        .HasColumnOrder(1)
         .UseIdentityColumn(1, 1)
         .ValueGeneratedOnAdd();
 
-      builder.Property(p => p.Username)
+      //add constrain for unique values
+      builder.HasIndex(t => t.Username)
+        .IsUnique(true);
+
+      builder.Property(t => t.Username)
         .HasColumnType("varchar")
         .HasMaxLength(255)
         .IsRequired(true);
 
-      builder.Property(p => p.Password)
+      builder.Property(t => t.Password)
         .HasColumnType("varchar")
         .HasMaxLength(255)
         .IsRequired(true);
 
-      builder.Property(p => p.FirstName)
+      builder.Property(t => t.FirstName)
         .HasColumnType("varchar")
         .HasMaxLength(200)
         .IsRequired(true);
 
-      builder.Property(p => p.LastName)
+      builder.Property(t => t.LastName)
         .HasColumnType("varchar")
         .HasMaxLength(200)
         .IsRequired(true);
 
+      builder.Property(a => a.AccessLevel)
+        .HasConversion(
+          v => v.ToString(),
+          v => Enum.Parse<AccessLevel>(v));
     }
   }
 }
