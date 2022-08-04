@@ -8,13 +8,13 @@ namespace AttendanceApi.Data.EntityModelConfigurations
   {
     public void Configure(EntityTypeBuilder<Student> builder)
     {
-      //add constrain for unique values
-      builder.HasAlternateKey(s => s.Id);
-
-      //generate identity(1,1)
-      builder.Property(s => s.Id)
-        .UseIdentityColumn(1, 1)
-        .ValueGeneratedOnAdd();
+      // //add constrain for unique values
+      // builder.HasAlternateKey(s => s.Id);
+      //
+      // //generate identity(1,1)
+      // builder.Property(s => s.Id)
+      //   .UseIdentityColumn(1, 1)
+      //   .ValueGeneratedOnAdd();
 
       //Primay key
       builder.HasKey(s => s.Regno);
