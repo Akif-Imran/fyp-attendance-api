@@ -20,12 +20,7 @@ namespace AttendanceApi.Data
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
-      modelBuilder.ApplyConfiguration(new ParentEntityConfiguration());
-      modelBuilder.ApplyConfiguration(new StudentEntityConfiguration());
-      modelBuilder.ApplyConfiguration(new TeacherEntityConfiguration());
-      modelBuilder.ApplyConfiguration(new AdminEntityConfiguration());
-      // modelBuilder.ApplyConfiguration<Admin>(new AdminEntityConfiguration());
-      // modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+      modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
   }
 }

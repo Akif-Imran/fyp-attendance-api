@@ -15,11 +15,11 @@ namespace AttendanceApi.Data.EntityModelConfigurations
       // builder.Property(s => s.Id)
       //   .UseIdentityColumn(1, 1)
       //   .ValueGeneratedOnAdd();
+      builder.HasKey(s => s.Id);
+      //Primary key
+      builder.HasAlternateKey(s => s.Regno);
 
-      //Primay key
-      builder.HasKey(s => s.Regno);
-
-      //Regno configuration
+      //Registration No. configuration
       builder.Property(s => s.Regno)
         .HasColumnType("varchar")
         .HasMaxLength(200)
@@ -73,7 +73,17 @@ namespace AttendanceApi.Data.EntityModelConfigurations
         .HasMaxLength(100)
         .IsRequired(true);
 
-      //
+      //a class has many students
+      builder.HasOne(s => s.Class)
+        .WithMany(c => c.Students)
+        .HasForeignKey(s => s.ClassId)
+        .IsRequired();
+
+      builder.HasOne(s => s.Parent)
+        .WithMany(p => p.Children)
+        .HasPrincipalKey(p => p.Id)
+        .HasForeignKey(s => s.ParentId)
+        .IsRequired();
     }
   }
 }
