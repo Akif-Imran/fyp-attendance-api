@@ -1,17 +1,26 @@
-﻿using AttendanceApi.Data.ViewModels;
+﻿using AttendanceApi.Data.Services;
+using AttendanceApi.Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AttendanceApi.Controllers
 {
-  [Route("api/[controller]/[action]")]
+  [Route("api/[controller]")]
   [ApiController]
   public class LoginController : ControllerBase
   {
-    [HttpGet]
+    private readonly LoginService _loginService;
+
+    public LoginController(LoginService loginService)
+    {
+      _loginService = loginService;
+    }
+
+    [HttpPost(template: "authenticate-user")]
     public IActionResult Login([FromBody] LoginViewModel loginViewModel)
     {
-      return Ok();
+      var details = _loginService.AuthenticateUser(loginViewModel);
+      return Ok(details);
     }
   }
 }

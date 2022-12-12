@@ -11,6 +11,8 @@ namespace AttendanceApi.Data
     public DbSet<Student> Students { get; set; }
     public DbSet<Teacher> Teachers { get; set; }
     public DbSet<Admin> Admins { get; set; }
+    public DbSet<Class> Class { get; set; }
+    public DbSet<User> User { get; set; }
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)

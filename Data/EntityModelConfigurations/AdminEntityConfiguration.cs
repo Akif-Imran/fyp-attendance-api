@@ -16,19 +16,19 @@ namespace AttendanceApi.Data.EntityModelConfigurations
         .UseIdentityColumn(1, 1)
         .ValueGeneratedOnAdd();
 
-      //add constrain for unique values
-      builder.HasIndex(t => t.Username)
-        .IsUnique(true);
+      ////add constrain for unique values
+      //builder.HasIndex(t => t.Username)
+      //  .IsUnique(true);
 
-      builder.Property(t => t.Username)
-        .HasColumnType("varchar")
-        .HasMaxLength(255)
-        .IsRequired(true);
+      //builder.Property(t => t.Username)
+      //  .HasColumnType("varchar")
+      //  .HasMaxLength(255)
+      //  .IsRequired(true);
 
-      builder.Property(t => t.Password)
-        .HasColumnType("varchar")
-        .HasMaxLength(255)
-        .IsRequired(true);
+      //builder.Property(t => t.Password)
+      //  .HasColumnType("varchar")
+      //  .HasMaxLength(255)
+      //  .IsRequired(true);
 
       builder.Property(t => t.FirstName)
         .HasColumnType("varchar")

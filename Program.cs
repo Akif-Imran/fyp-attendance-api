@@ -1,4 +1,6 @@
 using AttendanceApi.Data;
+using AttendanceApi.Data.Services;
+using AttendanceApi.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace AttendanceApi
@@ -17,8 +19,23 @@ namespace AttendanceApi
 
       //Configure DbContext with SQL
       builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+      //CORS Policy
+      /*var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+      builder.Services.AddCors(options =>
+      {
+        options.AddPolicy(name: MyAllowSpecificOrigins,
+          policy =>
+          {
+            policy.WithOrigins("https://localhost:7049", "https://127.0.0.1:7049", "https://192.168.100.12:7049");
+          });
+      });*/
 
       //Configure my services
+      builder.Services.AddTransient<StudentService>();
+      builder.Services.AddTransient<LoginService>();
+      builder.Services.AddTransient<AdminService>();
+      builder.Services.AddTransient<UserService>();
       // builder.Services.AddTransient<UserService>();
 
       // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -36,8 +53,14 @@ namespace AttendanceApi
 
       app.UseHttpsRedirection();
 
+      app.UseCors(x => x
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowAnyOrigin());
+
       app.UseAuthorization();
 
+      app.ConfigureBuiltinExceptionHandler();
 
       app.MapControllers();
 

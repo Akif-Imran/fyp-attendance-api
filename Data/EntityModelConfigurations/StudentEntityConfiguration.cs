@@ -25,19 +25,19 @@ namespace AttendanceApi.Data.EntityModelConfigurations
         .HasMaxLength(200)
         .IsRequired(true);
 
-      //unique username
-      builder.HasIndex(s => s.Username)
-        .IsUnique(true);
+      ////unique username
+      //builder.HasIndex(s => s.Username)
+      //  .IsUnique(true);
 
-      builder.Property(s => s.Username)
-        .HasColumnType("varchar")
-        .HasMaxLength(200)
-        .IsRequired(true);
+      //builder.Property(s => s.Username)
+      //  .HasColumnType("varchar")
+      //  .HasMaxLength(200)
+      //  .IsRequired(true);
 
-      builder.Property(s => s.Password)
-        .HasColumnType("varchar")
-        .HasMaxLength(255)
-        .IsRequired(true);
+      //builder.Property(s => s.Password)
+      //  .HasColumnType("varchar")
+      //  .HasMaxLength(255)
+      //  .IsRequired(true);
 
       builder.Property(s => s.FirstName)
         .HasColumnType("varchar")

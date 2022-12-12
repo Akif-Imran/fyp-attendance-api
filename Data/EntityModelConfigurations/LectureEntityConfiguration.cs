@@ -21,6 +21,7 @@ namespace AttendanceApi.Data.EntityModelConfigurations
           v => v.ToShortDateString(),
           v => DateOnly.Parse(v)
         ).HasColumnType("varchar")
+        .HasMaxLength(200)
         .IsRequired();
 
       //a course has many lectures.

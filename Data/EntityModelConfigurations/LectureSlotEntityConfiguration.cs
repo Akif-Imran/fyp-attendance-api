@@ -15,6 +15,7 @@ namespace AttendanceApi.Data.EntityModelConfigurations
           v => v.ToShortTimeString(),
           v => TimeOnly.Parse(v)
         ).HasColumnType("varchar")
+        .HasMaxLength(200)
         .IsRequired();
 
       builder.Property(ls => ls.EndTime)
@@ -22,6 +23,7 @@ namespace AttendanceApi.Data.EntityModelConfigurations
           v => v.ToShortTimeString(),
           v => TimeOnly.Parse(v)
         ).HasColumnType("varchar")
+        .HasMaxLength(200)
         .IsRequired();
     }
   }

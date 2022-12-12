@@ -4,7 +4,7 @@
   {
     public int Id { get; set; }
 
-    //TODO - define customer conversion for these props
+    //TODO - define custom conversion for these props
     public TimeOnly StartTime { get; set; }
     public TimeOnly EndTime { get; set; }
 

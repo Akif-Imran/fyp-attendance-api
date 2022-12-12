@@ -10,23 +10,23 @@ namespace AttendanceApi.Data.EntityModelConfigurations
     {
       builder.HasKey(p => p.Id);
       //add constrain for unique values
-      builder.HasIndex(p => p.Username)
-        .IsUnique(true);
+      //builder.HasIndex(p => p.Username)
+      //  .IsUnique(true);
 
       //generate identity(1,1)
       builder.Property(p => p.Id)
         .UseIdentityColumn(1, 1)
         .ValueGeneratedOnAdd();
 
-      builder.Property(p => p.Username)
-        .HasColumnType("varchar")
-        .HasMaxLength(255)
-        .IsRequired(true);
+      //builder.Property(p => p.Username)
+      //  .HasColumnType("varchar")
+      //  .HasMaxLength(255)
+      //  .IsRequired(true);
 
-      builder.Property(p => p.Password)
-        .HasColumnType("varchar")
-        .HasMaxLength(255)
-        .IsRequired(true);
+      //builder.Property(p => p.Password)
+      //  .HasColumnType("varchar")
+      //  .HasMaxLength(255)
+      //  .IsRequired(true);
 
       builder.Property(p => p.FirstName)
         .HasColumnType("varchar")
