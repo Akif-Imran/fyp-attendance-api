@@ -17,5 +17,7 @@ namespace AttendanceApi.Data.Services
         .Where(s => s.Class.ClassIdentifier.Equals(className))
         .ToList();
     }
+
+
   }
 }

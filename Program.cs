@@ -36,6 +36,8 @@ namespace AttendanceApi
       builder.Services.AddTransient<LoginService>();
       builder.Services.AddTransient<AdminService>();
       builder.Services.AddTransient<UserService>();
+      builder.Services.AddTransient<TimetableService>();
+      builder.Services.AddTransient<TeacherService>();
       // builder.Services.AddTransient<UserService>();
 
       // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -57,6 +59,8 @@ namespace AttendanceApi
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowAnyOrigin());
+
+      app.UseStaticFiles();
 
       app.UseAuthorization();
 

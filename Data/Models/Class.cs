@@ -6,5 +6,6 @@
     public string ClassIdentifier { get; set; }
     public ICollection<Teaches> Teaches { get; set; }
     public ICollection<Student> Students { get; set; }
+    // public ICollection<Timetable> Timetables { get; set; }
   }
 }
