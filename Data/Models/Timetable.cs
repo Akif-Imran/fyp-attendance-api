@@ -15,6 +15,7 @@ namespace AttendanceApi.Data.Models
     public int TeacherId { get; set; }
     public Teacher Teacher { get; set; }
 
+    public int WeekDay { get; set; } = 0;
     // public int ClassId { get; set; }
     // public Class Class { get; set; }
 

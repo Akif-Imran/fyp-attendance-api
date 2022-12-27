@@ -41,7 +41,7 @@ namespace AttendanceApi.Controllers
     private string GetImageByStudentRegNo(string regNo)
     {
 	 string imageURL = string.Empty;
-	 string hostURL = "http://localhost:7049";
+	 string hostURL = "http://192.168.100.12:7049";
 	 string filePath = GetFilePath(regNo);
 	 string imagePath = filePath + "\\Front.jpg";
 	 if (System.IO.File.Exists(imagePath))

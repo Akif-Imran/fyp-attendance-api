@@ -1,15 +1,14 @@
-﻿namespace AttendanceApi.Data.ViewModels
+﻿using AttendanceApi.Data.Enums;
+
+namespace AttendanceApi.Data.ViewModels
 {
   public class TeacherDetailsViewModel : UserDetailsViewModel
   {
     public string Department { get; set; }
 
-    public TeacherDetailsViewModel(string department, string firstName, string lastName, string username)
+    public TeacherDetailsViewModel(Models.Teacher t, string username, UserType type) : base(t, username, type)
     {
-      Department = department;
-      Username = username;
-      FirstName = firstName;
-      LastName = lastName;
+      this.Department = t.Department;
     }
   }
 }

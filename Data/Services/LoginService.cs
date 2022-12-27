@@ -18,24 +18,38 @@ namespace AttendanceApi.Data.Services
     {
       if (string.IsNullOrEmpty(userLogin.Username) || string.IsNullOrEmpty(userLogin.Password))
       {
-        throw new Exception("Invalid Username or Password");
+        throw new Exception("Username or Password can not be empty");
       }
 
-      //if (userLogin.UserType == UserType.Teacher)
-      //{
-      //  var teacher = _context.Teachers
-      //    .SingleOrDefault(t => userLogin.Username.Equals(t.Username));
+      var result = _context.User
+        .Where(u => u.Username == userLogin.Username && u.Password == userLogin.Password)
+        .AsEnumerable()
+        .First();
 
-      //  if (teacher is null || teacher.Password != userLogin.Password)
-      //  {
-      //    throw new Exception("Username or Password invalid");
-      //  }
-
-      //  return new TeacherDetailsViewModel(teacher.Department, teacher.FirstName, teacher.LastName, teacher.Username);
-      //}
-
-      //TODO - fix this empty return
-      return new UserDetailsViewModel();
+      switch (result.UserType)
+      {
+        case UserType.Teacher:
+        {
+          var teacher = _context.Teachers.Single(t => t.Id == result.SpecificUserId);
+          return new TeacherDetailsViewModel(teacher, result.Username, result.UserType);
+        }
+        case UserType.Student:
+        {
+          var student = _context.Students.Single(t => t.Id == result.SpecificUserId);
+          return new StudentDetailsViewModel(student, result.Username, result.UserType);
+        }
+        case UserType.Admin:
+        {
+          return new UserDetailsViewModel();
+        }
+        case UserType.Parent:
+        {
+          return new UserDetailsViewModel();
+        }
+        default:
+          //TODO - fix this empty return
+          return new UserDetailsViewModel();
+      }
     }
   }
 }

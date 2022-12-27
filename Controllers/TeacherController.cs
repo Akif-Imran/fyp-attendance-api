@@ -11,21 +11,21 @@ namespace AttendanceApi.Controllers
   {
     private readonly TeacherService _teacherService;
 
-    public TeacherController (TeacherService teacherService)
+    public TeacherController(TeacherService teacherService)
     {
-	 _teacherService = teacherService;
+      _teacherService = teacherService;
     }
 
-    [HttpGet(template: "get-teacher-info/{teacherId:int}")]
+    [HttpGet(template: "get-teacher-timetable/{teacherId:int}")]
     public IActionResult GetTeacherInfo(int teacherId)
     {
-      var teacherInfo = _teacherService.GetTeacherInfo(teacherId);
-      if (teacherInfo is not null)
+      var teacherInfo = _teacherService.GetTeacherTimetable(teacherId);
+      if (teacherInfo.Count != 0)
       {
-        var result = new InfoWithTimetableViewModel(teacherInfo);
-        return Ok(result);
+        return Ok(teacherInfo);
       }
-      return Ok(new {});
+
+      return NotFound();
     }
   }
 }
